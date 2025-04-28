@@ -47,6 +47,7 @@ class UserAccount(AbstractUser, PermissionsMixin):
     full_name = models.CharField(max_length=255, default="Anonymous")
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=True) 
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -60,6 +61,7 @@ class UserAccount(AbstractUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']  # Change from name to full_name
-
+    username = None  # Disable username field
+    
     def __str__(self):
         return self.email

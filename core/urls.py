@@ -14,12 +14,15 @@ urlpatterns = [
     # path("api/v1/", include("api.urls")),
     
      # JWT Authentication URLs (under api/v/)
-    path('api/v/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
-    path('api/v/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
+    path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    
+      # User App APIs (under api/v1/)
+    path('api/v1/users/', include('user.urls')), 
     
     # Listings App APIs
-    path('api/v/', include('listing.urls')),
+    path('api/v1/', include('listing.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
