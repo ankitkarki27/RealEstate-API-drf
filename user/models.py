@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 # Manager for UserAccount model
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, full_name, password=None):
+    def create_user(self, email, full_name, password=None,role='user'):
         if not email:
             raise ValueError("Users must have an email address")
         
@@ -12,7 +12,8 @@ class UserAccountManager(BaseUserManager):
 
         user = self.model(
             email=email,
-            full_name=full_name
+            full_name=full_name,
+            role=role
         )
         
         user.set_password(password)  # This will hash the password
